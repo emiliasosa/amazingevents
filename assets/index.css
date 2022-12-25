@@ -1,0 +1,83 @@
+.color{
+    background-color: #E6DDC4;
+}
+
+.ttl_size{
+    font-size: 4rem;
+    letter-spacing: 5rem;
+    text-shadow: 3px 3px 2px rgb(28, 28, 28);
+    background-color: rgba(9, 9, 9, 0.7);
+}
+
+.margin_top{
+    margin-top: 2rem;
+}
+
+.footer{
+    height: 10vh;
+    padding: 0 2rem;
+    border-top: 1px solid rgb(255, 255, 255);
+}
+
+.logo{
+    width: 1.8%;
+    margin-right: 2rem;
+}
+
+.h-img{
+    height: 13rem;
+    object-fit: cover;
+}
+
+.bg-color{
+    background: linear-gradient(309deg, rgba(150,138,215,1) 0%, rgba(26,52,110,1) 51%, rgba(143,167,229,1) 86%);
+}
+
+.w-nav{
+    height: 4rem;
+}
+
+.ttl_nav_color{
+    height: 30rem;
+    background-image: url("./img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.txt_color_logo{
+    color: rgb(218, 61, 100);
+    font-weight: 600;
+}
+
+.nav_color{
+    background-color: rgba(30, 30, 30, 0.8);
+}
+
+.btn-primary{
+    background-color: rgba(30, 30, 30, 0.8) !important; 
+    border: 1px solid rgba(79, 79, 79, 0.8) !important;
+}
+
+.btn-primary:hover{
+    background-color: rgb(218, 61, 100) !important; 
+    border: 1px solid rgb(218, 61, 100)!important; 
+}
+
+.active{
+    font-weight: 600!important;
+}
+
+.nav-link:hover{
+    color: rgb(218, 61, 100) !important; 
+}
+
+.btn-outline-success{
+    background-color: rgb(218, 61, 100) !important; 
+    border: 1px solid rgb(218, 61, 100)!important; 
+}
+
+.btn-outline-success:hover{
+    background-color: rgba(30, 30, 30, 0.8) !important; 
+    border: 1px solid rgba(79, 79, 79, 0.8) !important;
+}
