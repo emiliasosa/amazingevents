@@ -88,7 +88,6 @@
 
 .bg-form{
     background-color: rgba(222, 222, 222, 0.6);
-    width: 50vw;
 }
 
 .btn_form_width{
@@ -98,7 +97,6 @@
 
 .bg_table{
     background-color: rgba(222, 222, 222, 0.6);
-    width: 70%;
 }
 
 .ttl_spacing_table{
@@ -129,4 +127,41 @@
 
 .card{
     height: 26rem !important;
+}
+
+@media (max-width: 769px){
+    .img_size_nav{
+        width: 9rem !important;
+    }
+
+    nav{
+        height: 3rem !important;
+    }
+
+    footer img{
+        width: 1.5rem !important;
+    }
+}
+
+@media (max-width: 426px){
+    .ttl_size{
+        font-size: 2.5rem !important;
+        letter-spacing: 1.5rem;
+    }
+
+    .ttl_spacing_table{
+        letter-spacing: .2rem;
+    }
+
+    .check_index{
+        display: flex;
+        justify-content: center;
+        padding: 0 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+
+    footer img{
+        width: 1.2rem !important;
+    }
 }
