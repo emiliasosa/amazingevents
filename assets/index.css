@@ -104,3 +104,19 @@
 .ttl_spacing_table{
     letter-spacing: .4rem;
 }
+
+.details_container{
+    width: 50rem;
+    height: 25rem;
+    background-color: rgba(222, 222, 222, 0.6);
+    padding: 1rem;
+    
+}
+
+.detail-img{
+    width: 55% !important;
+    height: 100%;
+    object-fit: cover;
+    margin-right: 2rem;
+    box-shadow: 4px 4px 10px -2px #2A2A2A;
+}
