@@ -1,8 +1,9 @@
 let callEvents = (data)=>{
-    let template = ''
+    let past = document.getElementById("pastEvents")
+    past.innerHTML = ''
     for (let event of data.events){
-        if(event.date < data.currentDate){
-            template += `
+        if(event.date.includes(2021)){
+            past.innerHTML += `
             <div class="card m-4" style="width: 20rem;">
                 <img src="${event.image}" class="card-img-top h-img" alt="feria de comidas" title="feria de comidas">
                 <div class="card-body">
@@ -17,8 +18,7 @@ let callEvents = (data)=>{
             `
         }
     }
-    return template
+    return past
 }
 
 let pastEvents = callEvents(data)
-let past = document.querySelector("#pastEvents").innerHTML = pastEvents

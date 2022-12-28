@@ -1,7 +1,8 @@
 let callEvents = (data, data2)=>{
-    let template = ''
+    let all = document.getElementById("allEvents")
+    all.innerHTML = ''
     for (let event of data.events){
-            template += `
+            all.innerHTML += `
             <div class="card m-4" style="width: 20rem;">
                 <img src="${event.image}" class="card-img-top h-img" alt="feria de comidas" title="feria de comidas">
                 <div class="card-body">
@@ -15,12 +16,14 @@ let callEvents = (data, data2)=>{
             </div>
             `
         }
-    return template
+    return all
 }
 
 
 let allEvents = callEvents(data)
-let all = document.getElementById("allEvents").innerHTML = allEvents
+
+
+
 
 /*let callDetailEvents = (data, data2)=>{
     let template = ''

@@ -1,8 +1,9 @@
-let callEvents = (data)=>{
-    let template = ''
+let callEvents = (data, data2)=>{
+    let up = document.getElementById("upcomingEvents")
+    up.innerHTML = ''
     for (let event of data.events){
         if(event.date > data.currentDate){
-            template += `
+            up.innerHTML += `
             <div class="card m-4" style="width: 20rem;">
                 <img src="${event.image}" class="card-img-top h-img" alt="feria de comidas" title="feria de comidas">
                 <div class="card-body">
@@ -17,8 +18,8 @@ let callEvents = (data)=>{
             `
         }
     }
-    return template
+    return up
 }
 
-let upcomingEvents = callEvents(data)
-let up = document.getElementById("upcomingEvents").innerHTML = upcomingEvents
+
+let upEvents = callEvents(data)
