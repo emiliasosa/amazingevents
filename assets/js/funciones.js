@@ -4,7 +4,7 @@ let callEvents = (data, data2)=>{
         if(event.date.includes(data2)){
             template += `
             <div class="card m-4" style="width: 20rem;">
-                <img src="${event.image}" class="card-img-top  h-img" alt="feria de comidas" title="feria de comidas">
+                <img src="${event.image}" class="card-img-top h-img" alt="feria de comidas" title="feria de comidas">
                 <div class="card-body">
                     <h5 class="card-title text-center">${event.name}</h5>
                     <p class="card-text text-center">${event.description}</p>
@@ -55,4 +55,6 @@ let bookExchangeEvents = callDetailEvents(data, 'Book Exchange')
 let cinemaEvents = callDetailEvents(data, 'Cinema')
 
 
-console.log(pastEvents)
+//document.getElementById("upcomingEvents").innerHTML = upcomingEvents
+//document.getElementById("pastEvents").innerHTML = pastEvents
+document.getElementById("allEvents").innerHTML = allEvents
