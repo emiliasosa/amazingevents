@@ -1,7 +1,6 @@
 let callEvents = (data, data2)=>{
     let template = ''
     for (let event of data.events){
-        if(event.date.includes(data2)){
             template += `
             <div class="card m-4" style="width: 20rem;">
                 <img src="${event.image}" class="card-img-top h-img" alt="feria de comidas" title="feria de comidas">
@@ -16,11 +15,14 @@ let callEvents = (data, data2)=>{
             </div>
             `
         }
-    }
     return template
 }
 
-let callDetailEvents = (data, data2)=>{
+
+let allEvents = callEvents(data)
+let all = document.getElementById("allEvents").innerHTML = allEvents
+
+/*let callDetailEvents = (data, data2)=>{
     let template = ''
     for (let event of data.events) {
         if(event.category.includes(data2)){
@@ -43,18 +45,28 @@ let callDetailEvents = (data, data2)=>{
     return template
 }
 
-let upcomingEvents = callEvents(data, 2022)
-let pastEvents = callEvents(data, 2021)
-let allEvents = callEvents(data, 20)
+let showCategories = (data)=>{
+    let template = ``
+    for(let event of data.events){
+        template += `
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label text-light" for="inlineCheckbox1">${event.category}</label>
+            </div>`
+    }
+    return template
+}
+
+console.log(showCategories(data))
+
+
 let foodFairEvents = callDetailEvents(data, 'Food Fair')
 let museumEvents = callDetailEvents(data, 'Museum')
 let costumePartyEvents = callDetailEvents(data, 'Costume Party')
 let musicConcertEvents = callDetailEvents(data, 'Music Concert')
 let raceEvents = callDetailEvents(data, 'Race')
 let bookExchangeEvents = callDetailEvents(data, 'Book Exchange')
-let cinemaEvents = callDetailEvents(data, 'Cinema')
+let cinemaEvents = callDetailEvents(data, 'Cinema')*/
 
 
-//document.getElementById("upcomingEvents").innerHTML = upcomingEvents
-//document.getElementById("pastEvents").innerHTML = pastEvents
-document.getElementById("allEvents").innerHTML = allEvents
+
