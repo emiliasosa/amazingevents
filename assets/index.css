@@ -140,6 +140,16 @@
         transform: translateY(0)}
 }
 
+.cardTransition2{
+    transition: 1s;
+    animation: transition2 1s;
+}
+
+@keyframes transition2 {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+
 @media (max-width: 769px){
     .img_size_nav{
         width: 9rem !important;

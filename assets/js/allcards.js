@@ -3,7 +3,7 @@ let callEvents = (data)=>{
     all.innerHTML = ''
     for (let event of data.events){
             all.innerHTML += `
-            <div class="card m-4" style="width: 20rem;">
+            <div class="card m-4 cardTransition2" style="width: 20rem;">
                 <img src="${event.image}" class="card-img-top h-img" alt="${event.name}" title="${event.name}">
                 <div class="card-body">
                     <h5 class="card-title text-center">${event.name}</h5>

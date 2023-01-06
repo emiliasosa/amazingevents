@@ -32,11 +32,10 @@ let returnValueCheckBox = (array)=>{
 
     if(cardsCheckBoxFilter.length > 0){
         return cardsFinal
-    }else{
-        return arrayEvents
     }
     
 }
+
 
 
 let returnValueSearch = () => {
@@ -44,7 +43,12 @@ let returnValueSearch = () => {
         return event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase())
     })
 
-    return cardsFilter
+    if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
+        render(renderCardsSearch(cardsFilter), "allEvents")
+    }else{
+        return cardsFilter
+    }
+    
 }
 
 
@@ -55,7 +59,7 @@ let renderCardsSearch = (array)=>{
     if(array.length > 0){
         array.forEach(card => {
             template +=`
-            <div class="card m-4" style="width: 20rem;">
+            <div class="card m-4 cardTransition" style="width: 20rem;">
                 <img src="${card.image}" class="card-img-top h-img" alt="${card.name}" title="${card.name}">
                 <div class="card-body">
                     <h5 class="card-title text-center">${card.name}</h5>
@@ -81,7 +85,7 @@ let render = (template, where)=>{
 }
 
 
-let renderBoth = (where)=>{
+let renderBoth = ()=>{
     let search = returnValueSearch()
     let checkbox = returnValueCheckBox(search)
 
@@ -89,7 +93,12 @@ let renderBoth = (where)=>{
     
 }
 
-renderCheckBox(checkFilter, checkBoxContainer)
+/*let renderSearch = ()=>{
+    let search = returnValueSearch()
 
-checkBoxContainer.addEventListener('change', renderBoth)
+    render(renderCardsSearch(search), "allEvents")
+}*/
+
+renderCheckBox(checkFilter, checkBoxContainer)
 searchContainer.addEventListener('input', renderBoth)
+checkBoxContainer.addEventListener('change', renderBoth)

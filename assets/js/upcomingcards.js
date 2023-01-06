@@ -7,7 +7,7 @@ let renderCards = (data, where)=>{
     where.innerHTML = ''
     for (let event of data){
         where.innerHTML += `
-        <div class="card m-4" style="width: 20rem;">
+        <div class="card m-4 cardTransition2" style="width: 20rem;">
             <img src="${event.image}" class="card-img-top h-img" alt="${event.name}" title="${event.name}">
             <div class="card-body">
                 <h5 class="card-title text-center">${event.name}</h5>
@@ -57,8 +57,6 @@ let returnValueCheckBox = (array)=>{
 
     if(cardsCheckBoxFilter.length > 0){
         return cardsFinal
-    }else{
-        return cardUpcomingFiltradas
     }
     
 }
@@ -69,7 +67,11 @@ let returnValueSearch = () => {
         return event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase())
     })
 
-    return cardsFilter
+    if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
+        render(renderCardsSearch(cardsFilter), "upcomingEvents")
+    }else{
+        return cardsFilter
+    }
 }
 
 
@@ -80,7 +82,7 @@ let renderCardsSearch = (array)=>{
     if(array.length > 0){
         array.forEach(card => {
             template +=`
-            <div class="card m-4" style="width: 20rem;">
+            <div class="card m-4 cardTransition" style="width: 20rem;">
                 <img src="${card.image}" class="card-img-top h-img" alt="${card.name}" title="${card.name}">
                 <div class="card-body">
                     <h5 class="card-title text-center">${card.name}</h5>
