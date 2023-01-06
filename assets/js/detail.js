@@ -5,7 +5,7 @@ let params = new URLSearchParams(paramLocation)
 let id = params.get("id")
 
 
-let filterOneCard = data.events.filter(card => card._id === id )
+let filterOneCard = data.events.filter(card => card._id === id)
 
 let renderCard = (event, where)=>{
     let optionChanged = ""
