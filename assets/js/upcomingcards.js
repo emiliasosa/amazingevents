@@ -1,4 +1,5 @@
 const whereUpcoming = document.getElementById("upcomingEvents")
+const searchContainer = document.getElementById('search')
 
 let cardUpcomingFiltradas = data.events.filter(card => card.date > data.currentDate)
 
@@ -24,15 +25,54 @@ let renderCards = (data, where)=>{
 renderCards(cardUpcomingFiltradas,whereUpcoming)
 
 
-const searchContainer = document.getElementById('search')
+const checkBoxContainer = document.getElementById('checkbox')
 
-let returnValueSearch = (e) => {
-    let cardsFilter = cardUpcomingFiltradas.filter(event => event.name.toLowerCase().startsWith(e.target.value.toLowerCase()))
+const checkFilter = cardUpcomingFiltradas.map(event => event.category).flat().filter((category, index, array) => array.indexOf(category) === index)
 
-    render(renderCardsSearch(cardsFilter), "upcomingEvents")
+//Renderizo cada checkbox
+let renderCheckBox = (array, where)=>{
+    where.innerHTML = ''
+
+    for(let check of array){
+        where.innerHTML +=`
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" value="${check}">
+                <label class="form-check-label text-light">${check}</label>
+            </div>
+        `
+    }
 }
 
-let listenSearch = searchContainer.addEventListener('input', returnValueSearch)
+
+let returnValueCheckBox = (array)=>{
+    let checkbox = document.querySelectorAll('input[type="checkbox"]:checked')
+    
+    let cardsCheckBoxFilter = []
+
+    checkbox.forEach(check=>{
+        cardsCheckBoxFilter.push(array.filter(event => event.category === check.value))
+    })
+   
+    let cardsFinal = cardsCheckBoxFilter.flat()
+
+    if(cardsCheckBoxFilter.length > 0){
+        return cardsFinal
+    }else{
+        return cardUpcomingFiltradas
+    }
+    
+}
+
+
+let returnValueSearch = () => {
+    let cardsFilter = cardUpcomingFiltradas.filter(event => {
+        return event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase())
+    })
+
+    return cardsFilter
+}
+
+
 
 let renderCardsSearch = (array)=>{
     let template = ''
@@ -47,7 +87,7 @@ let renderCardsSearch = (array)=>{
                     <p class="card-text text-center">${card.description}</p>
                     <div class="d-flex justify-content-between price_btn_bottom">
                         <p class="fs-5 txt_color_logo">Price: ${card.price}</p>
-                        <a href="./detail.html?id=${card._id}" class="btn btn-primary">See more..</a>
+                        <a href="./detail.html" class="btn btn-primary">See more..</a>
                     </div>
                 </div>
             </div>
@@ -66,23 +106,15 @@ let render = (template, where)=>{
 }
 
 
-let returnValueCheckBoxUp = ()=>{
-    let checkbox = document.querySelectorAll('input[type="checkbox"]:checked')
-    
-    let cardsCheckBoxFilter = []
+let renderBoth = ()=>{
+    let search = returnValueSearch()
+    let checkbox = returnValueCheckBox(search)
 
-    checkbox.forEach(check=>{
-        cardsCheckBoxFilter.push(cardUpcomingFiltradas.filter(event => event.category === check.value))
-    })
-   
-    let cardsFinal = cardsCheckBoxFilter.flat()
-
-    if(cardsCheckBoxFilter.length > 0){
-        render(renderCardsSearch(cardsFinal), "upcomingEvents")
-    }else{
-        render(renderCardsSearch(cardUpcomingFiltradas), "upcomingEvents") 
-    }
+    render(renderCardsSearch(checkbox), "upcomingEvents")
     
 }
 
-checkBoxContainer.addEventListener('change', returnValueCheckBoxUp)
+renderCheckBox(checkFilter, checkBoxContainer)
+
+checkBoxContainer.addEventListener('change', renderBoth)
+searchContainer.addEventListener('input', renderBoth)

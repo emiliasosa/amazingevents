@@ -1,33 +1,8 @@
-const wherePast = document.getElementById("pastEvents")
-
-let cardPastFiltradas = data.events.filter(card => card.date < data.currentDate)
-
-let renderCards = (data, where)=>{
-    where.innerHTML = ''
-    for (let event of data){
-        where.innerHTML += `
-        <div class="card m-4" style="width: 20rem;">
-            <img src="${event.image}" class="card-img-top h-img" alt="${event.name}" title="${event.name}">
-            <div class="card-body">
-                <h5 class="card-title text-center">${event.name}</h5>
-                <p class="card-text text-center">${event.description}</p>
-                <div class="d-flex justify-content-between price_btn_bottom">
-                    <p class="fs-5 txt_color_logo">Price: ${event.price}</p>
-                    <a href="./detail.html?id=${event._id}" class="btn btn-primary">See more..</a>
-                </div>
-            </div>
-        </div>
-        `     
-    }
-}
-
-renderCards(cardPastFiltradas,wherePast)
-
-
 const checkBoxContainer = document.getElementById('checkbox')
 const searchContainer = document.getElementById('search')
+const arrayEvents = data.events
 
-const checkFilter = cardPastFiltradas.map(event => event.category).flat().filter((category, index, array) => array.indexOf(category) === index)
+const checkFilter = arrayEvents.map(event => event.category).flat().filter((category, index, array) => array.indexOf(category) === index)
 
 //Renderizo cada checkbox
 let renderCheckBox = (array, where)=>{
@@ -58,14 +33,14 @@ let returnValueCheckBox = (array)=>{
     if(cardsCheckBoxFilter.length > 0){
         return cardsFinal
     }else{
-        return cardPastFiltradas
+        return arrayEvents
     }
     
 }
 
 
 let returnValueSearch = () => {
-    let cardsFilter = cardPastFiltradas.filter(event => {
+    let cardsFilter = arrayEvents.filter(event => {
         return event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase())
     })
 
@@ -110,7 +85,7 @@ let renderBoth = (where)=>{
     let search = returnValueSearch()
     let checkbox = returnValueCheckBox(search)
 
-    render(renderCardsSearch(checkbox), "pastEvents")
+    render(renderCardsSearch(checkbox), "allEvents")
     
 }
 
