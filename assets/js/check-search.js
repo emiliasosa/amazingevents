@@ -2,7 +2,7 @@ const checkBoxContainer = document.getElementById('checkbox')
 const searchContainer = document.getElementById('search')
 const arrayEvents = data.events
 
-const checkFilter = arrayEvents.map(event => event.category).flat().filter((category, index, array) => array.indexOf(category) === index)
+const checkFilter = arrayEvents.map(event => event.category).filter((category, index, array) => array.indexOf(category) === index)
 
 //Renderizo cada checkbox
 let renderCheckBox = (array, where)=>{
@@ -18,71 +18,61 @@ let renderCheckBox = (array, where)=>{
     }
 }
 
-
 let returnValueCheckBox = (array)=>{
     let checkbox = document.querySelectorAll('input[type="checkbox"]:checked')
     
     let cardsCheckBoxFilter = []
 
-    checkbox.forEach(check=>{
-        cardsCheckBoxFilter.push(array.filter(event => event.category === check.value))
-    })
+    checkbox.forEach(check=> cardsCheckBoxFilter.push(array.filter(event => event.category === check.value)))
    
     let cardsFinal = cardsCheckBoxFilter.flat()
 
     if(cardsCheckBoxFilter.length > 0){
         return cardsFinal
-    }
-    
+    } 
 }
 
-
-
 let returnValueSearch = () => {
-    let cardsFilter = arrayEvents.filter(event => {
-        return event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase())
-    })
+    let cardsFilter = arrayEvents.filter(event => event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase()))
 
     if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
-        render(renderCardsSearch(cardsFilter), "allEvents")
+       render(renderCardsSearch(cardsFilter), "allEvents")
     }else{
         return cardsFilter
     }
-    
 }
-
-
 
 let renderCardsSearch = (array)=>{
-    let template = ''
+    let template = []
 
-    if(array.length > 0){
-        array.forEach(card => {
-            template +=`
-            <div class="card m-4 cardTransition" style="width: 20rem;">
-                <img src="${card.image}" class="card-img-top h-img" alt="${card.name}" title="${card.name}">
-                <div class="card-body">
-                    <h5 class="card-title text-center">${card.name}</h5>
-                    <p class="card-text text-center">${card.description}</p>
-                    <div class="d-flex justify-content-between price_btn_bottom">
-                        <p class="fs-5 txt_color_logo">Price: ${card.price}</p>
-                        <a href="./detail.html" class="btn btn-primary">See more..</a>
-                    </div>
+    array.forEach(card => {
+        template.push(`
+        <div class="card m-4 cardTransition" style="width: 20rem;">
+            <img src="${card.image}" class="card-img-top h-img" alt="${card.name}" title="${card.name}">
+            <div class="card-body">
+                <h5 class="card-title text-center">${card.name}</h5>
+                <p class="card-text text-center">${card.description}</p>
+                <div class="d-flex justify-content-between price_btn_bottom">
+                    <p class="fs-5 txt_color_logo">Price: ${card.price}</p>
+                    <a href="./detail.html?id=${card._id}" class="btn btn-primary">See more..</a>
                 </div>
             </div>
-            `
-        })
+        </div>
+        `) 
+    })
+
+
+    if(array.length > 0){
+        // template.forEach(card =>  setTimeout(()=> {console.log(card)}, 2000))
+        return template
     }else{
-        template = `<h2 class="fs-1 text-light">There's no match</h2>`
+        return `<h2 class="fs-1 text-light">There's no match</h2>`
     }
+
     
-
-    return template
 }
 
-let render = (template, where)=>{
-    document.getElementById(where).innerHTML = template
-}
+let render = (template, where)=> document.getElementById(where).innerHTML = template
 
 
 let renderBoth = ()=>{
@@ -92,12 +82,6 @@ let renderBoth = ()=>{
     render(renderCardsSearch(checkbox), "allEvents")
     
 }
-
-/*let renderSearch = ()=>{
-    let search = returnValueSearch()
-
-    render(renderCardsSearch(search), "allEvents")
-}*/
 
 renderCheckBox(checkFilter, checkBoxContainer)
 searchContainer.addEventListener('input', renderBoth)

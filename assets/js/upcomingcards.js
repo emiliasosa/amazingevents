@@ -27,7 +27,7 @@ renderCards(cardUpcomingFiltradas,whereUpcoming)
 
 const checkBoxContainer = document.getElementById('checkbox')
 
-const checkFilter = cardUpcomingFiltradas.map(event => event.category).flat().filter((category, index, array) => array.indexOf(category) === index)
+const checkFilter = cardUpcomingFiltradas.map(event => event.category).filter((category, index, array) => array.indexOf(category) === index)
 
 //Renderizo cada checkbox
 let renderCheckBox = (array, where)=>{
@@ -49,9 +49,7 @@ let returnValueCheckBox = (array)=>{
     
     let cardsCheckBoxFilter = []
 
-    checkbox.forEach(check=>{
-        cardsCheckBoxFilter.push(array.filter(event => event.category === check.value))
-    })
+    checkbox.forEach(check=> cardsCheckBoxFilter.push(array.filter(event => event.category === check.value)))
    
     let cardsFinal = cardsCheckBoxFilter.flat()
 
@@ -63,9 +61,7 @@ let returnValueCheckBox = (array)=>{
 
 
 let returnValueSearch = () => {
-    let cardsFilter = cardUpcomingFiltradas.filter(event => {
-        return event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase())
-    })
+    let cardsFilter = cardUpcomingFiltradas.filter(event => event.name.toLowerCase().startsWith(searchContainer.value.toLowerCase()))
 
     if(document.querySelectorAll('input[type="checkbox"]:checked').length == 0){
         render(renderCardsSearch(cardsFilter), "upcomingEvents")
@@ -89,7 +85,7 @@ let renderCardsSearch = (array)=>{
                     <p class="card-text text-center">${card.description}</p>
                     <div class="d-flex justify-content-between price_btn_bottom">
                         <p class="fs-5 txt_color_logo">Price: ${card.price}</p>
-                        <a href="./detail.html" class="btn btn-primary">See more..</a>
+                        <a href="./detail.html?id=${card._id}" class="btn btn-primary">See more..</a>
                     </div>
                 </div>
             </div>
