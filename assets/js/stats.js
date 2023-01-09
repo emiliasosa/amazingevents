@@ -13,32 +13,34 @@ fetch("https://mindhub-xj03.onrender.com/api/amazing")
                 <tr>
                     <th colspan="3" class="ttl_spacing_table table-dark">EVENTS STATICS</th>
                 </tr>
-                <tr>
-                    <td class="text-dark">Events with the highest percentage of attendance</td>
-                    <td class="text-dark">Events with the lowest percentage of attendance</td>
-                    <td class="text-dark">Event with larger capacity</td>
-                </tr>
-                ${returnMaxAttendance(returnStats(eventsArr))}
-                ${returnMinAttendance(returnStats(eventsArr))}
-                ${returnMaxCapacity(eventsArr)}
-                <tr>
-                    <th colspan="3" class="ttl_spacing_table table-dark">UPCOMING EVENTS STATICS BY CATEGORY</th>
-                </tr>
-                <tr>
-                    <td class="text-dark">Categories</td>
-                    <td class="text-dark">Revenues</td>
-                    <td class="text-dark">Percentage of attendance</td>
-                </tr>
-                ${renderStats(returnStats(upcommingStats))}
-                <tr>
-                    <th colspan="3" class="ttl_spacing_table table-dark">PAST EVENTS STATICS BY CATEGORY</th>
-                </tr>
-                <tr>
-                    <td class="text-dark">Categories</td>
-                    <td class="text-dark">Revenues</td>
-                    <td class="text-dark">Percentage of attendance</td>
-                </tr>
-                ${renderStats(returnStats(pastStats))}
+                <tbody>
+                    <tr>
+                        <td class="text-dark">Events with the highest percentage of attendance</td>
+                        <td class="text-dark">Events with the lowest percentage of attendance</td>
+                        <td class="text-dark">Event with larger capacity</td>
+                    </tr>
+                    ${returnMaxAttendance(returnStats(eventsArr))}
+                    ${returnMinAttendance(returnStats(eventsArr))}
+                    ${returnMaxCapacity(eventsArr)}
+                    <tr>
+                        <th colspan="3" class="ttl_spacing_table table-dark">UPCOMING EVENTS STATICS BY CATEGORY</th>
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Categories</td>
+                        <td class="text-dark">Revenues</td>
+                        <td class="text-dark">Percentage of attendance</td>
+                    </tr>
+                    ${renderStats(returnStats(upcommingStats))}
+                    <tr>
+                        <th colspan="3" class="ttl_spacing_table table-dark">PAST EVENTS STATICS BY CATEGORY</th>
+                    </tr>
+                    <tr>
+                        <td class="text-dark">Categories</td>
+                        <td class="text-dark">Revenues</td>
+                        <td class="text-dark">Percentage of attendance</td>
+                    </tr>
+                    ${renderStats(returnStats(pastStats))}
+                </tbody>
             </table>
         `
     }
